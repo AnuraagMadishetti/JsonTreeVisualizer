@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # My React App
 
 This is a simple React application created using Create React App.
@@ -60,3 +61,6 @@ If you would like to contribute to this project, please fork the repository and 
 ### License
 
 This project is licensed under the MIT License.
+=======
+# JsonTreeVisualizer
+>>>>>>> 5aa8632bf39baf4c4cdbad26fff73e8f4befb945
