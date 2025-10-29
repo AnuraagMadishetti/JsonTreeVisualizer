@@ -37,7 +37,8 @@ textarea {
 }
 
 .controls {
-  margin-top: 8px;
+  margin-top: 48px;
+ 
 }
 
 button {
@@ -59,6 +60,9 @@ button {
   padding: 12px;
   border-radius: 8px;
 }
+
+
+
 
 .node { margin: 6px 0; }
 .node .key { font-weight: 600; margin-right: 6px; }

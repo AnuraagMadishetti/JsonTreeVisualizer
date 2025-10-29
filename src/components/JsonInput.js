@@ -1,4 +1,5 @@
-// ...existing code...
+
+
 import React, { useState } from "react";
 
 const SAMPLE_JSON = `{
@@ -16,35 +17,46 @@ const SAMPLE_JSON = `{
 export default function JsonInput({ onVisualize }) {
   const [text, setText] = useState(SAMPLE_JSON);
   const [error, setError] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   function handleVisualize() {
-    try {
-      const parsed = JSON.parse(text);
-      // ensure we pass only a JSON-serializable plain object (removes functions/React elements)
-      const safe = JSON.parse(JSON.stringify(parsed));
-      // debug
-      // eslint-disable-next-line no-console
-      console.log("JsonInput -> passing to FlowTree (safe):", safe);
-      setError(null);
-      onVisualize(safe);
-    } catch (e) {
-      setError(e.message);
-      onVisualize(null);
-    }
+    // ...existing code...
+  }
+
+  const clear = () => {
+    setText("");
+  }
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.className = isDarkMode ? 'light-mode' : 'dark-mode';
   }
 
   return (
-    <div className="input-card">
+    <div className={`input-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <div className="theme-toggle">
+        <button 
+          onClick={toggleTheme}
+          className="theme-button"
+        >
+          {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+        </button>
+      </div>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={12}
         aria-label="JSON input"
+        className={isDarkMode ? 'dark-mode' : 'light-mode'}
       />
       {error && <div className="error">Invalid JSON: {error}</div>}
       <div className="controls">
         <button onClick={handleVisualize}>Visualize</button>
+        <button style={{marginLeft:"20px", backgroundColor:"red"}} onClick={clear}>Clear</button>
       </div>
     </div>
   );
 }
+
+
+
