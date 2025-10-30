@@ -146,15 +146,10 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
-/* Also support global body class toggle */
+
 body.light-mode .input-card { background-color: #ffffff; color: #111; }
 body.dark-mode .input-card  { background-color: #111; color: #e6e6e6; }
 
-/* json input container and textarea */
-.json-input-container {
-  /* flex: 1; */
- 
-}
 
 .json-input-container.light .json-textarea,
 body.light-mode .json-textarea {
@@ -170,7 +165,7 @@ body.dark-mode .json-textarea {
   border: 1px solid #2b2f33;
 }
 
-/* search wrapper and form */
+
 .search-wrapper { width: 420px; }
 .search-bar {
   display: flex;

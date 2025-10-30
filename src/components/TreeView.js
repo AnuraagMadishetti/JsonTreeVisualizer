@@ -1,4 +1,4 @@
-// ...existing code...
+
 import React from "react";
 
 function Node({ name, value }) {
@@ -27,7 +27,6 @@ function Node({ name, value }) {
     );
   }
 
-  // object
   return (
     <div className="node">
       <div className="key">{name} {"{ }"}</div>

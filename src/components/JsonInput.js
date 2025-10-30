@@ -24,7 +24,6 @@ export default function JsonInput({ onVisualize, isDarkMode }) {
       const parsed = JSON.parse(text);
       console.log(parsed, "parsed")
       setError(null);
-      // Only pass the parsed data to parent
       if (typeof onVisualize === 'function') {
         onVisualize(parsed);
       }

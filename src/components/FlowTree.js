@@ -10,16 +10,15 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-const HORIZONTAL_GAP = 250;
-const VERTICAL_GAP = 120;
-const highlightColor = "#ff6b6b"; // highlight color (red)
+const HORIZONTAL_GAP = 180;
+const VERTICAL_GAP = 80;
+const highlightColor = "#ff6b6b";
 
 function FlowTreeContent({ data, searchResult }) {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { setCenter } = useReactFlow();
 
-  // Create nodes and edges recursively
   const createNodesAndEdges = (obj) => {
     const nodes = [];
     const edges = [];
@@ -43,11 +42,11 @@ function FlowTreeContent({ data, searchResult }) {
         style: {
           background: backgroundColor,
           border: "1px solid #888",
-          borderRadius: 8,
-          padding: 8,
+          borderRadius: 6,
+          padding: 6,
           fontWeight: 600,
           textAlign: "center",
-          minWidth: 100,
+          minWidth: 70,
         },
         fullPath,
         value,
@@ -89,8 +88,8 @@ function FlowTreeContent({ data, searchResult }) {
             style: {
               background: "#b2f2bb",
               border: "1px solid #888",
-              borderRadius: 8,
-              padding: 8,
+              borderRadius: 6,
+              padding: 6,
               fontWeight: 600,
               textAlign: "center",
               minWidth: 80,
@@ -123,7 +122,7 @@ function FlowTreeContent({ data, searchResult }) {
       } else {
         childRow++;
         const valueId = `node-${nodeId++}`;
-        const valPath = `${fullPath}`;
+       const valPath = `${fullPath}.value`;
         nodes.push({
           id: valueId,
           position: { x: (level + 1) * HORIZONTAL_GAP, y: childRow * VERTICAL_GAP },
@@ -131,8 +130,8 @@ function FlowTreeContent({ data, searchResult }) {
           style: {
             background: "#ffd43b",
             border: "1px solid #888",
-            borderRadius: 8,
-            padding: 8,
+            borderRadius: 6,
+            padding: 6,
             textAlign: "center",
             minWidth: 80,
           },
@@ -158,7 +157,6 @@ function FlowTreeContent({ data, searchResult }) {
     return { nodes, edges };
   };
 
-  // Initial render
   useEffect(() => {
     if (data) {
       const { nodes: n, edges: e } = createNodesAndEdges(data);
@@ -167,13 +165,19 @@ function FlowTreeContent({ data, searchResult }) {
     }
   }, [data]);
 
-  // Highlight and center searched node
   useEffect(() => {
     if (!searchResult || !nodes.length) return;
 
-    const matchedNode = nodes.find(
-      (n) => n.fullPath === searchResult.path || n.fullPath === `$${searchResult.path}`
-    );
+    // Find the deepest matching node — usually the value node
+const matchedNode = nodes.find(
+  (n) =>
+    n.fullPath === searchResult.path ||
+    n.fullPath === `$${searchResult.path}` ||
+    n.fullPath === `${searchResult.path}.value` ||
+    n.fullPath === `$${searchResult.path}.value`
+);
+
+
 
     if (matchedNode) {
       setNodes((nds) =>
@@ -207,7 +211,6 @@ function FlowTreeContent({ data, searchResult }) {
   );
 }
 
-// ✅ Wrap content with ReactFlowProvider
 export default function FlowTree(props) {
   return (
     <ReactFlowProvider>
