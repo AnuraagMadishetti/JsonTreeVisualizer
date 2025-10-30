@@ -9,7 +9,7 @@ export default function App() {
   const [searchResult, setSearchResult] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  console.log(data, "in app")
+  
 
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
@@ -65,7 +65,7 @@ export default function App() {
 
       <div className={`input-card ${isDarkMode ? 'dark' : 'light'}`}>
         <div className="input-wrapper">
-          <JsonInput onVisualize={setData} isDarkMode={isDarkMode} />
+          <JsonInput onVisualize={setData} isDarkMode={isDarkMode} setSearchResult={setSearchResult} />
           <div className="search-wrapper">
             <SearchBar onSearch={handleSearch} isDarkMode={isDarkMode} />
             {searchResult && (

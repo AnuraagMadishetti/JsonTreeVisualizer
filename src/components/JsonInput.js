@@ -15,7 +15,7 @@ const SAMPLE_JSON = ` {
   }
 }`;
 
-export default function JsonInput({ onVisualize, isDarkMode }) {
+export default function JsonInput({ onVisualize, isDarkMode, setSearchResult }) {
   const [text, setText] = useState(SAMPLE_JSON);
   const [error, setError] = useState(null);
 
@@ -37,6 +37,7 @@ export default function JsonInput({ onVisualize, isDarkMode }) {
   const clear = () => {
     setText("");
     setError(null);
+    setSearchResult(null);
     if (typeof onVisualize === 'function') {
       onVisualize(null);
     }
@@ -51,7 +52,7 @@ export default function JsonInput({ onVisualize, isDarkMode }) {
         aria-label="JSON input"
         className={`json-textarea ${isDarkMode ? 'dark' : 'light'}`}
       />
-      {error && <div className="error">Invalid JSON: {error}</div>}
+      {error && <div className="error">Invalid JSON format</div>}
       <div className="controls">
         <button 
           onClick={handleVisualize}
