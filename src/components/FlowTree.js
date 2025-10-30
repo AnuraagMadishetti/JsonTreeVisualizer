@@ -168,7 +168,6 @@ function FlowTreeContent({ data, searchResult }) {
   useEffect(() => {
     if (!searchResult || !nodes.length) return;
 
-    // Find the deepest matching node — usually the value node
 const matchedNode = nodes.find(
   (n) =>
     n.fullPath === searchResult.path ||
@@ -176,8 +175,6 @@ const matchedNode = nodes.find(
     n.fullPath === `${searchResult.path}.value` ||
     n.fullPath === `$${searchResult.path}.value`
 );
-
-
 
     if (matchedNode) {
       setNodes((nds) =>

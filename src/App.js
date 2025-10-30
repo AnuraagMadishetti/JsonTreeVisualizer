@@ -4,7 +4,6 @@ import FlowTree from "./components/FlowTree";
 import SearchBar from "./components/SearchBar";
 import './App.css';
 
-
 export default function App() {
   const [data, setData] = useState();
   const [searchResult, setSearchResult] = useState(null);
@@ -30,7 +29,6 @@ export default function App() {
           const index = parseInt(indexStr.replace(']', ''), 10);
           current = arrayName ? current[arrayName][index] : current[index];
         } else if (path === '') {
-          // skip empty segments (possible when user types leading .)
           continue;
         } else {
           current = current[path];
@@ -45,7 +43,7 @@ export default function App() {
     } catch (error) {
       setSearchResult({
         path: query,
-        error: 'Path not found'
+        error: 'No Match Found'
       });
     }
   };
@@ -71,12 +69,12 @@ export default function App() {
           <div className="search-wrapper">
             <SearchBar onSearch={handleSearch} isDarkMode={isDarkMode} />
             {searchResult && (
-              <div className="search-result">
+              <div className={`search-result ${isDarkMode ? 'dark' : 'light'}`}>
                 <h3>Search Result for: {searchResult.path}</h3>
                 {searchResult.error ? (
                   <p className="error">{searchResult.error}</p>
                 ) : (
-                  <pre>{JSON.stringify(searchResult.value, null, 2)}</pre>
+                  <p>{JSON.stringify(searchResult.value, null, 2)}</p>
                 )}
               </div>
             )}
