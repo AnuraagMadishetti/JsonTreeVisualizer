@@ -11,7 +11,7 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 
 const HORIZONTAL_GAP = 180;
-const VERTICAL_GAP = 80;
+const VERTICAL_GAP = 120;
 const highlightColor = "#ff6b6b";
 
 function FlowTreeContent({ data, searchResult }) {
@@ -42,11 +42,11 @@ function FlowTreeContent({ data, searchResult }) {
         style: {
           background: backgroundColor,
           border: "1px solid #888",
-          borderRadius: 6,
-          padding: 6,
+          borderRadius: 8,
+          padding: 8,
           fontWeight: 600,
           textAlign: "center",
-          minWidth: 70,
+          minWidth: 100,
         },
         fullPath,
         value,
@@ -88,8 +88,8 @@ function FlowTreeContent({ data, searchResult }) {
             style: {
               background: "#b2f2bb",
               border: "1px solid #888",
-              borderRadius: 6,
-              padding: 6,
+              borderRadius: 8,
+              padding: 8,
               fontWeight: 600,
               textAlign: "center",
               minWidth: 80,
@@ -130,8 +130,8 @@ function FlowTreeContent({ data, searchResult }) {
           style: {
             background: "#ffd43b",
             border: "1px solid #888",
-            borderRadius: 6,
-            padding: 6,
+            borderRadius: 8,
+            padding: 8,
             textAlign: "center",
             minWidth: 80,
           },
@@ -175,6 +175,8 @@ const matchedNode = nodes.find(
     n.fullPath === `${searchResult.path}.value` ||
     n.fullPath === `$${searchResult.path}.value`
 );
+
+
 
     if (matchedNode) {
       setNodes((nds) =>
