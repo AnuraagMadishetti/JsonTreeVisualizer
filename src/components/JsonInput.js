@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SAMPLE_JSON = ` {
   "user": {
@@ -8,9 +8,9 @@ const SAMPLE_JSON = ` {
       "city": "Hyderabad",
       "country": "India"
     },
-    "items": [
-      { "name": "item1" },
-      { "name": "item2" }
+    "stack": [
+      { "name": "React" },
+      { "name": "JavaScript" }
     ]
   }
 }`;
@@ -37,7 +37,7 @@ export default function JsonInput({ onVisualize, isDarkMode, setSearchResult }) 
   const clear = () => {
     setText("");
     setError(null);
-    setSearchResult(null);
+    setSearchResult('');
     if (typeof onVisualize === 'function') {
       onVisualize(null);
     }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -175,9 +175,6 @@ const matchedNode = nodes.find(
     n.fullPath === `${searchResult.path}.value` ||
     n.fullPath === `$${searchResult.path}.value`
 );
-
-
-
     if (matchedNode) {
       setNodes((nds) =>
         nds.map((n) =>

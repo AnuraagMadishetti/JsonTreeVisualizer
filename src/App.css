@@ -61,9 +61,6 @@ button {
   border-radius: 8px;
 }
 
-
-
-
 .node { margin: 6px 0; }
 .node .key { font-weight: 600; margin-right: 6px; }
 .node .value { color: var(--muted); }

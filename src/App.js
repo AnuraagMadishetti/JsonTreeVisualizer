@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import JsonInput from "./components/JsonInput";
 import FlowTree from "./components/FlowTree";
 import SearchBar from "./components/SearchBar";
@@ -9,19 +9,17 @@ export default function App() {
   const [searchResult, setSearchResult] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  
-
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
   }, [isDarkMode]);
 
   const handleSearch = (query) => {
     if (!data) return;
+    if(!query) return;
 
     try {
       const cleanQuery = query.startsWith('$') ? query.substring(1) : query;
       const paths = cleanQuery.split('.');
-      
       let current = data;
       for (const path of paths) {
         if (path.includes('[') && path.includes(']')) {

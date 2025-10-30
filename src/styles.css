@@ -23,60 +23,10 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
- 
-}
-
-.input-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
 }
 
 .input-wrapper {
   display: flex;
-
-}
-
-.search-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  width: 400px;
-}
-
-.search-result {
-  background-color: #f5f5f5;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 0.9em;
-}
-
-.search-result h3 {
-  margin-top: 0;
-  font-size: 1em;
-  color: #333;
-}
-
-.search-result pre {
-  background-color: white;
-  padding: 10px;
-  border-radius: 4px;
-  overflow-x: auto;
-  margin: 0;
-}
-
-.visual {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.error {
-  color: #dc3545;
-  margin: 0;
 }
 
 .light-mode {
@@ -87,25 +37,6 @@ body {
 .dark-mode {
   background-color: #111;
   color: #ffffff;
-}
-
-.theme-button {
-  padding: 8px 16px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.dark-mode .theme-button {
-  background-color: #4a4a4a;
-  color: #ffffff;
-}
-
-.light-mode .theme-button {
-  background-color: #e0e0e0;
-  color: #111;
 }
 
 .dark-mode textarea {
@@ -119,28 +50,6 @@ body {
   color: #111;
   border: 1px solid #cccccc;
 }
-
-.input-card {
-  border-radius: 8px;
- 
-  transition: background-color 0.2s, color 0.2s;
-  background-color: #ffffff;
-  color: #111;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-
-.input-card.light {
-  background-color: #ffffff;
-  color: #111;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-
-.input-card.dark {
-  background-color: #1f2933;
-  color: #e6e6e6;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-}
-
 
 body.light-mode .input-card { background-color: #ffffff; color: #111; }
 body.dark-mode .input-card  { background-color: #111; color: #e6e6e6; }
@@ -166,12 +75,14 @@ body.dark-mode .json-textarea {
   display: flex;
   gap: 2px;
 }
+
 .search-bar.light .search-input,
 body.light-mode .search-input {
   background: #fff;
   color: #111;
   border: 1px solid #ccc;
 }
+
 .search-bar.dark .search-input,
 body.dark-mode .search-input {
   background: #0f1214;
@@ -179,32 +90,30 @@ body.dark-mode .search-input {
   border: 1px solid #2b2f33;
 }
 
-/* buttons */
+
 .theme-button, .search-button, .controls button {
   transition: background-color 0.15s, color 0.15s;
 }
+
 body.dark-mode .theme-button,
 .input-card.dark .theme-button {
   background: #2b3036;
   color: #fff;
 }
+
 body.light-mode .theme-button,
 .input-card.light .theme-button {
   background: #e9eef6;
   color: #111;
 }
 
-/* error text */
+
 .error { color: #e55353; margin-top: 8px; }
 
-/* ensure nested text color adjusts */
 .input-card.dark pre, .input-card.dark h3, .input-card.dark p { color: #e6e6e6; }
-searchBar styling
 
 .search-bar {
- 
   display: flex;
- 
 }
 
 .search-input {
@@ -217,7 +126,7 @@ searchBar styling
 
 .search-button {
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #2196F3;
   color: white;
   border: none;
   border-radius: 4px;
@@ -278,6 +187,55 @@ textarea {
   margin-top: 10px;
   display: flex;
   gap: 10px;
+  
+}
+
+.visualize-button{
+  background-color: green;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: var(--header-bg, #f0f0f0);
+  border-bottom: 1px solid #ccc;
+}
+
+.app-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-color, #222);
+  margin: 0;
+}
+
+.theme-button {
+  background-color: var(--button-bg, #007bff);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+
+}
+
+.theme-button:hover {
+  background-color: var(--button-hover-bg, #0056b3);
+}
+
+.dark-mode .app-header {
+  background-color: #1e1e1e;
+  border-bottom-color: #444;
+}
+
+.dark-mode .app-title {
+  color: #f5f5f5;
+}
+
+.dark-mode .theme-button:hover {
+  background-color: #666;
 }
 
 .node { margin: 6px 0; }
