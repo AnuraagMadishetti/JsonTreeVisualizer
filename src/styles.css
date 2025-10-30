@@ -15,58 +15,77 @@ body {
 }
 
 .app {
-  max-width: 900px;
-  margin: 32px auto;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+ 
 }
 
 .input-card {
-  background: var(--card);
-  padding: 12px;
+  background: white;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
-textarea {
-  width: 100%;
-  font-family: monospace;
-  font-size: 13px;
-  padding: 8px;
-  box-sizing: border-box;
+.input-wrapper {
+  display: flex;
+
 }
 
-.controls {
-  margin-top: 8px;
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 300px;
 }
 
-button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+.search-result {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 0.9em;
+}
+
+.search-result h3 {
+  margin-top: 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.search-result pre {
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.visual {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .error {
-  margin-top: 8px;
-  color: var(--error);
-}
-
-.tree {
-  background: var(--card);
-  padding: 12px;
-  border-radius: 8px;
+  color: #dc3545;
+  margin: 0;
 }
 
 .light-mode {
   background-color: #ffffff;
-  color: #333333;
+  color: #111;
 }
 
 .dark-mode {
-  background-color: #1e1e1e;
+  background-color: #111;
   color: #ffffff;
 }
 
@@ -86,7 +105,7 @@ button {
 
 .light-mode .theme-button {
   background-color: #e0e0e0;
-  color: #333333;
+  color: #111;
 }
 
 .dark-mode textarea {
@@ -97,8 +116,165 @@ button {
 
 .light-mode textarea {
   background-color: #ffffff;
-  color: #333333;
+  color: #111;
   border: 1px solid #cccccc;
+}
+
+
+
+
+/* Card theme */
+.input-card {
+  border-radius: 8px;
+ 
+  transition: background-color 0.2s, color 0.2s;
+  background-color: #ffffff;
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* light / dark modifiers on the card */
+.input-card.light {
+  background-color: #ffffff;
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.input-card.dark {
+  background-color: #1f2933;
+  color: #e6e6e6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Also support global body class toggle */
+body.light-mode .input-card { background-color: #ffffff; color: #111; }
+body.dark-mode .input-card  { background-color: #111; color: #e6e6e6; }
+
+/* json input container and textarea */
+.json-input-container {
+  /* flex: 1; */
+ 
+}
+
+.json-input-container.light .json-textarea,
+body.light-mode .json-textarea {
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #ddd;
+}
+
+.json-input-container.dark .json-textarea,
+body.dark-mode .json-textarea {
+  background: #111;
+  color: #e6e6e6;
+  border: 1px solid #2b2f33;
+}
+
+/* search wrapper and form */
+.search-wrapper { width: 420px; }
+.search-bar {
+  display: flex;
+  gap: 2px;
+}
+.search-bar.light .search-input,
+body.light-mode .search-input {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+.search-bar.dark .search-input,
+body.dark-mode .search-input {
+  background: #0f1214;
+  color: #e6e6e6;
+  border: 1px solid #2b2f33;
+}
+
+/* buttons */
+.theme-button, .search-button, .controls button {
+  transition: background-color 0.15s, color 0.15s;
+}
+body.dark-mode .theme-button,
+.input-card.dark .theme-button {
+  background: #2b3036;
+  color: #fff;
+}
+body.light-mode .theme-button,
+.input-card.light .theme-button {
+  background: #e9eef6;
+  color: #111;
+}
+
+/* error text */
+.error { color: #e55353; margin-top: 8px; }
+
+/* ensure nested text color adjusts */
+.input-card.dark pre, .input-card.dark h3, .input-card.dark p { color: #e6e6e6; }
+searchBar styling
+
+.search-bar {
+ 
+  display: flex;
+ 
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-result {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.search-result .error {
+  color: #dc3545;
+}
+
+.search-result pre {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.json-input-container {
+  flex: 0.7;
+}
+
+textarea {
+  width: 60%;
+  min-height: 300px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  resize: vertical;
+}
+
+.controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .node { margin: 6px 0; }

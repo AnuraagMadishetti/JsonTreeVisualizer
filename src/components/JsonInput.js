@@ -1,62 +1,74 @@
-
-
 import React, { useState } from "react";
 
-const SAMPLE_JSON = `{
-  "name": "Alice",
-  "age": 30,
-  "address": {
-    "city": "Wonderland",
-    "zip": "12345"
-  },
-  "hobbies": ["reading", "chess"],
-  "active": true,
-  "score": null
+const SAMPLE_JSON = ` {
+  "user": {
+    "id": "1",
+    "name": "Anuraag",
+    "address": {
+      "city": "Hyderabad",
+      "country": "India"
+    },
+    "items": [
+      { "name": "item1" },
+      { "name": "item2" }
+    ]
+  }
 }`;
 
-export default function JsonInput({ onVisualize }) {
+export default function JsonInput({ onVisualize, isDarkMode }) {
   const [text, setText] = useState(SAMPLE_JSON);
   const [error, setError] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   function handleVisualize() {
-    // ...existing code...
+    try {
+      const parsed = JSON.parse(text);
+      console.log(parsed, "parsed")
+      setError(null);
+      // Only pass the parsed data to parent
+      if (typeof onVisualize === 'function') {
+        onVisualize(parsed);
+      }
+    } catch (e) {
+      setError(e.message);
+      if (typeof onVisualize === 'function') {
+        onVisualize(null);
+      }
+    }
   }
 
   const clear = () => {
     setText("");
-  }
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.className = isDarkMode ? 'light-mode' : 'dark-mode';
+    setError(null);
+    if (typeof onVisualize === 'function') {
+      onVisualize(null);
+    }
   }
 
   return (
-    <div className={`input-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <div className="theme-toggle">
-        <button 
-          onClick={toggleTheme}
-          className="theme-button"
-        >
-          {isDarkMode ? '☀️ Light' : '🌙 Dark'}
-        </button>
-      </div>
+    <div className={`json-input-container ${isDarkMode ? 'dark' : 'light'}`}>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        rows={12}
+        rows={14}
         aria-label="JSON input"
-        className={isDarkMode ? 'dark-mode' : 'light-mode'}
+        className={`json-textarea ${isDarkMode ? 'dark' : 'light'}`}
       />
       {error && <div className="error">Invalid JSON: {error}</div>}
       <div className="controls">
-        <button onClick={handleVisualize}>Visualize</button>
-        <button style={{marginLeft:"20px", backgroundColor:"red"}} onClick={clear}>Clear</button>
+        <button 
+          onClick={handleVisualize}
+          className={`visualize-button ${isDarkMode ? 'dark' : 'light'}`}
+        >
+          Visualize
+        </button>
+        <button 
+          onClick={clear}
+          className="clear-button"
+          style={{marginLeft:"12px", backgroundColor:"red"}} 
+        >
+          Clear
+        </button>
       </div>
     </div>
   );
 }
-
-
-
